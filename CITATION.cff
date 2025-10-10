@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+title: "Deep Learning Model for EEG Mental Workload Classification"
+message: "If you use this work, please cite it as below."
+type: software
+authors:
+  - family-names: Omofowobi
+    given-names: Yunus Alade
+    affiliation: "Department of Electrical and Computer Engineering"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+contributors:
+  - family-names: ChatGPT
+    given-names: OpenAI Assistant
+    affiliation: "OpenAI"
+abstract: >
+  A reproducible research pipeline comparing classical and deep learning models
+  for EEG-based mental workload classification. The project implements Logistic
+  Regression and Convolutional Neural Networks (CNN) using TensorFlow and scikit-learn,
+  with Optuna-based tuning, YAML configuration, visualization tools, MNE preprocessing,
+  and full Docker and CI integration.
+repository-code: "https://github.com/<YOUR_USERNAME>/Deep-Learning-Model-For-Mental-Workload-Classification"
+license: "MIT"
+keywords:
+  - EEG
+  - Deep Learning
+  - Mental Workload
+  - Cognitive Neuroscience
+  - TensorFlow
+  - Machine Learning
+  - Reproducibility
+version: "0.1.0"
+date-released: "2025-10-11"

@@ -1,0 +1,9 @@
+data_path: ./WLDataCW.mat
+model: both        # logreg | cnn | both
+norm: zscore       # none | zscore | minmax
+test_size: 0.2
+val_size: 0.2
+epochs: 30
+batch_size: 32
+seed: 42
+output_dir: ./outputs
