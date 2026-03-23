@@ -21,7 +21,7 @@ env/
 # Environment
 .env
 
-# Models (trained locally, regenerated in CI)
+# Models (trained locally)
 models/*.joblib
 
 # OS
@@ -36,5 +36,5 @@ htmlcov/
 .coverage
 coverage.xml
 
-# Results
-results/plots/*.png
+# Claude
+.claude/
