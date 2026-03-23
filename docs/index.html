@@ -37,107 +37,89 @@
         }
         .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
 
-        header {
-            background: var(--card);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 0;
-        }
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        header { background: var(--card); border-bottom: 1px solid var(--border); padding: 14px 0; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 18px; font-weight: 700; color: var(--primary); }
         .logo span { color: var(--text-muted); font-weight: 400; font-size: 13px; }
-        nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: var(--text-muted);
-            font-size: 13px;
-            font-weight: 500;
-        }
+        nav a { margin-left: 20px; text-decoration: none; color: var(--text-muted); font-size: 13px; font-weight: 500; }
         nav a:hover { color: var(--primary); }
 
         .hero { text-align: center; padding: 48px 0 32px; }
         .hero h1 { font-size: 32px; margin-bottom: 8px; letter-spacing: -0.5px; }
         .hero p { color: var(--text-muted); font-size: 16px; max-width: 520px; margin: 0 auto; }
         .accuracy-badge {
-            display: inline-block;
-            background: var(--primary-bg);
-            color: var(--primary);
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 12px;
+            display: inline-block; background: var(--primary-bg); color: var(--primary);
+            padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 12px;
         }
 
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 28px;
-            margin-bottom: 20px;
-        }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 20px; }
         .card h2 { font-size: 18px; margin-bottom: 4px; }
         .card .subtitle { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .form-group { display: flex; flex-direction: column; }
-        .form-group label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 4px;
+        .form-group label { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+        .form-group .hint { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+        .form-group input, .form-group select {
+            padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
+            font-size: 15px; transition: border-color 0.2s; width: 100%; background: white;
         }
-        .form-group .hint {
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-        }
-        .form-group input {
-            padding: 10px 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 15px;
-            transition: border-color 0.2s;
-            width: 100%;
-        }
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+        .form-group input:focus, .form-group select:focus {
+            outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
         }
         .form-group input.error { border-color: var(--danger); }
 
+        /* Inline helper row */
+        .input-row { display: flex; gap: 8px; align-items: center; }
+        .input-row input { flex: 1; }
+        .input-row .helper-btn {
+            padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px;
+            background: var(--primary-bg); color: var(--primary); font-size: 12px;
+            font-weight: 600; cursor: pointer; white-space: nowrap; transition: background 0.2s;
+        }
+        .input-row .helper-btn:hover { background: #ccfbf1; }
+
+        /* BMI Calculator popup */
+        .popup-overlay {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4); z-index: 100; align-items: center; justify-content: center;
+        }
+        .popup-overlay.show { display: flex; }
+        .popup {
+            background: white; border-radius: var(--radius); padding: 28px; width: 90%; max-width: 380px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        .popup h3 { font-size: 16px; margin-bottom: 16px; }
+        .popup .form-group { margin-bottom: 12px; }
+        .popup-actions { display: flex; gap: 8px; margin-top: 16px; }
+        .popup-actions button {
+            flex: 1; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+        }
+        .popup-actions .btn-calc { background: var(--primary); color: white; border: none; }
+        .popup-actions .btn-cancel { background: white; color: var(--text-muted); border: 1px solid var(--border); }
+        .bmi-result { margin-top: 12px; padding: 12px; background: var(--primary-bg); border-radius: 8px; text-align: center; font-size: 14px; display: none; }
+        .bmi-result strong { font-size: 24px; color: var(--primary); }
+
+        /* Unit toggle */
+        .unit-toggle {
+            display: inline-flex; background: #f1f5f9; border-radius: 6px; padding: 2px; margin-bottom: 4px;
+        }
+        .unit-toggle button {
+            padding: 3px 10px; border: none; border-radius: 4px; font-size: 11px;
+            font-weight: 600; cursor: pointer; background: transparent; color: var(--text-muted);
+            transition: all 0.2s;
+        }
+        .unit-toggle button.active { background: white; color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
         .btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.2s;
+            display: block; width: 100%; padding: 14px; background: var(--primary); color: white;
+            border: none; border-radius: 8px; font-size: 16px; font-weight: 600;
+            cursor: pointer; margin-top: 20px; transition: background 0.2s;
         }
         .btn:hover { background: #0d6b63; }
         .btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        .result {
-            display: none;
-            margin-top: 24px;
-            padding: 28px;
-            border-radius: var(--radius);
-            text-align: center;
-        }
+        .result { display: none; margin-top: 24px; padding: 28px; border-radius: var(--radius); text-align: center; }
         .result.show { display: block; }
         .result-risk { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
         .result-value { font-size: 52px; font-weight: 800; margin: 4px 0; }
@@ -150,12 +132,10 @@
         .result.low .result-risk { color: var(--success); }
         .result.low .result-value { color: var(--success); }
         .result.low .result-bar-fill { background: var(--success); }
-
         .result.moderate { background: var(--warning-bg); border: 1px solid #fde68a; }
         .result.moderate .result-risk { color: var(--warning); }
         .result.moderate .result-value { color: var(--warning); }
         .result.moderate .result-bar-fill { background: var(--warning); }
-
         .result.high { background: var(--danger-bg); border: 1px solid #fecaca; }
         .result.high .result-risk { color: var(--danger); }
         .result.high .result-value { color: var(--danger); }
@@ -163,36 +143,39 @@
 
         .breakdown { margin-top: 20px; text-align: left; }
         .breakdown h3 { font-size: 14px; margin-bottom: 8px; }
-        .factor {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 13px;
-        }
+        .factor { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
         .factor:last-child { border-bottom: none; }
-        .factor-tag {
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-        }
+        .factor-tag { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
         .factor-tag.normal { background: var(--success-bg); color: var(--success); }
         .factor-tag.elevated { background: var(--warning-bg); color: var(--warning); }
         .factor-tag.high { background: var(--danger-bg); color: var(--danger); }
 
         .disclaimer {
-            background: var(--warning-bg);
-            border: 1px solid #fde68a;
-            border-radius: var(--radius);
-            padding: 14px 18px;
-            font-size: 12px;
-            color: #92400e;
-            margin-top: 20px;
-            line-height: 1.5;
+            background: var(--warning-bg); border: 1px solid #fde68a; border-radius: var(--radius);
+            padding: 14px 18px; font-size: 12px; color: #92400e; margin-top: 20px; line-height: 1.5;
         }
         .disclaimer strong { display: block; margin-bottom: 2px; font-size: 13px; }
+
+        /* History */
+        .history-list { list-style: none; }
+        .history-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px;
+        }
+        .history-item:last-child { border-bottom: none; }
+        .history-meta { color: var(--text-muted); font-size: 11px; }
+        .history-score { font-weight: 700; font-size: 16px; }
+        .history-score.low { color: var(--success); }
+        .history-score.moderate { color: var(--warning); }
+        .history-score.high { color: var(--danger); }
+        .history-empty { color: var(--text-muted); font-size: 13px; text-align: center; padding: 16px 0; }
+        .history-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+        .history-actions button {
+            padding: 6px 14px; border: 1px solid var(--border); border-radius: 6px;
+            background: white; color: var(--text-muted); font-size: 12px; cursor: pointer;
+        }
+        .history-actions button:hover { border-color: var(--danger); color: var(--danger); }
+        .history-count { font-size: 12px; color: var(--text-muted); }
 
         .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
         .step { text-align: center; padding: 16px; }
@@ -205,28 +188,17 @@
         .step h3 { font-size: 14px; margin-bottom: 4px; }
         .step p { font-size: 12px; color: var(--text-muted); }
 
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 24px 0;
-            margin-top: 48px;
-            color: var(--text-muted);
-            font-size: 12px;
-        }
+        footer { border-top: 1px solid var(--border); padding: 24px 0; margin-top: 48px; color: var(--text-muted); font-size: 12px; }
         footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
         footer a { color: var(--text-muted); text-decoration: none; margin-left: 12px; }
         footer a:hover { color: var(--primary); }
 
         .cookie-banner {
-            display: none;
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: var(--text); color: white;
-            padding: 14px 20px; font-size: 13px; z-index: 1000;
+            display: none; position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--text); color: white; padding: 14px 20px; font-size: 13px; z-index: 1000;
         }
         .cookie-banner.show { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-        .cookie-banner button {
-            padding: 6px 16px; border: none; border-radius: 6px;
-            cursor: pointer; font-weight: 600; font-size: 12px; flex-shrink: 0;
-        }
+        .cookie-banner button { padding: 6px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 12px; flex-shrink: 0; }
         .cookie-accept { background: var(--primary); color: white; }
         .cookie-reject { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3) !important; }
 
@@ -245,6 +217,7 @@
         <div class="logo">DiabetesPredict <span>UK</span></div>
         <nav>
             <a href="#assess">Assess</a>
+            <a href="#history">History</a>
             <a href="#how">How It Works</a>
             <a href="privacy.html">Privacy</a>
             <a href="terms.html">Terms</a>
@@ -272,7 +245,11 @@
                 </div>
                 <div class="form-group">
                     <label for="glucose">Glucose</label>
-                    <div class="hint">Fasting blood glucose (mg/dL)</div>
+                    <div class="unit-toggle" id="glucose-unit-toggle">
+                        <button class="active" onclick="setGlucoseUnit('mgdl')">mg/dL</button>
+                        <button onclick="setGlucoseUnit('mmol')">mmol/L</button>
+                    </div>
+                    <div class="hint" id="glucose-hint">Fasting blood glucose (mg/dL)</div>
                     <input type="number" id="glucose" min="0" max="300" placeholder="e.g. 120" step="1">
                 </div>
                 <div class="form-group">
@@ -293,7 +270,10 @@
                 <div class="form-group">
                     <label for="bmi">BMI</label>
                     <div class="hint">Body mass index (kg/m²)</div>
-                    <input type="number" id="bmi" min="0" max="80" placeholder="e.g. 28.5" step="0.1">
+                    <div class="input-row">
+                        <input type="number" id="bmi" min="0" max="80" placeholder="e.g. 28.5" step="0.1">
+                        <button class="helper-btn" onclick="openBmiCalc()">Calc</button>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="dpf">Family History Score</label>
@@ -330,6 +310,17 @@
         </div>
     </section>
 
+    <!-- Results History -->
+    <section id="history" style="margin-top: 24px;">
+        <div class="card">
+            <h2>Your Assessment History</h2>
+            <p class="subtitle">Stored locally in your browser. We never see this data.</p>
+            <div id="history-content">
+                <div class="history-empty">No assessments yet. Complete the form above to get started.</div>
+            </div>
+        </div>
+    </section>
+
     <section id="how" style="margin-top: 24px;">
         <div class="card">
             <h2 style="text-align: center;">How It Works</h2>
@@ -354,6 +345,57 @@
     </section>
 </main>
 
+<!-- BMI Calculator Popup -->
+<div class="popup-overlay" id="bmi-popup">
+    <div class="popup">
+        <h3>BMI Calculator</h3>
+        <div class="form-group">
+            <label>Height</label>
+            <div class="unit-toggle" id="height-unit-toggle">
+                <button class="active" onclick="setHeightUnit('cm')">cm</button>
+                <button onclick="setHeightUnit('ft')">ft/in</button>
+            </div>
+            <div id="height-input-cm">
+                <input type="number" id="height-cm" placeholder="e.g. 175" min="100" max="250" step="1">
+            </div>
+            <div id="height-input-ft" style="display:none;">
+                <div style="display:flex;gap:8px;">
+                    <input type="number" id="height-ft" placeholder="ft" min="3" max="8" step="1" style="width:50%;">
+                    <input type="number" id="height-in" placeholder="in" min="0" max="11" step="1" style="width:50%;">
+                </div>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:12px;">
+            <label>Weight</label>
+            <div class="unit-toggle" id="weight-unit-toggle">
+                <button class="active" onclick="setWeightUnit('kg')">kg</button>
+                <button onclick="setWeightUnit('st')">st/lb</button>
+                <button onclick="setWeightUnit('lb')">lb</button>
+            </div>
+            <div id="weight-input-kg">
+                <input type="number" id="weight-kg" placeholder="e.g. 75" min="30" max="300" step="0.1">
+            </div>
+            <div id="weight-input-st" style="display:none;">
+                <div style="display:flex;gap:8px;">
+                    <input type="number" id="weight-st" placeholder="st" min="4" max="40" step="1" style="width:50%;">
+                    <input type="number" id="weight-lb-st" placeholder="lb" min="0" max="13" step="1" style="width:50%;">
+                </div>
+            </div>
+            <div id="weight-input-lb" style="display:none;">
+                <input type="number" id="weight-lb" placeholder="e.g. 165" min="60" max="660" step="1">
+            </div>
+        </div>
+        <div class="bmi-result" id="bmi-result">
+            Your BMI: <strong id="bmi-calc-value"></strong>
+            <div id="bmi-category" style="font-size:12px;margin-top:4px;"></div>
+        </div>
+        <div class="popup-actions">
+            <button class="btn-cancel" onclick="closeBmiCalc()">Cancel</button>
+            <button class="btn-calc" onclick="calculateBmi()">Calculate &amp; Use</button>
+        </div>
+    </div>
+</div>
+
 <footer>
     <div class="container">
         <div>&copy; 2026 DiabetesPredict UK. For educational purposes only.</div>
@@ -374,24 +416,20 @@
 </div>
 
 <script>
-// GBT model loaded from model.json at runtime
+// ─── State ───
 let MODEL = null;
+let glucoseUnit = 'mgdl'; // 'mgdl' or 'mmol'
+let heightUnit = 'cm';
+let weightUnit = 'kg';
 
 const FIELDS = ['pregnancies', 'glucose', 'bloodpressure', 'skinthickness', 'insulin', 'bmi', 'dpf', 'age'];
 const LABELS = ['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin', 'BMI', 'Family History', 'Age'];
-
 const RANGES = {
-    pregnancies: [0, 4],
-    glucose: [70, 140],
-    bloodpressure: [60, 90],
-    skinthickness: [0, 30],
-    insulin: [0, 166],
-    bmi: [18.5, 30],
-    dpf: [0, 0.7],
-    age: [0, 45]
+    pregnancies: [0, 4], glucose: [70, 140], bloodpressure: [60, 90],
+    skinthickness: [0, 30], insulin: [0, 166], bmi: [18.5, 30], dpf: [0, 0.7], age: [0, 45]
 };
 
-// Load model on page load
+// ─── Model Loading ───
 fetch('model.json')
     .then(r => r.json())
     .then(m => {
@@ -403,32 +441,128 @@ fetch('model.json')
         document.getElementById('predict-btn').textContent = 'Model failed to load';
     });
 
-function sigmoid(x) {
-    return 1 / (1 + Math.exp(-x));
+// ─── Glucose Unit Converter ───
+function setGlucoseUnit(unit) {
+    const input = document.getElementById('glucose');
+    const hint = document.getElementById('glucose-hint');
+    const btns = document.querySelectorAll('#glucose-unit-toggle button');
+    btns.forEach(b => b.classList.remove('active'));
+
+    const oldVal = parseFloat(input.value);
+
+    if (unit === 'mmol') {
+        btns[1].classList.add('active');
+        hint.textContent = 'Fasting blood glucose (mmol/L)';
+        input.placeholder = 'e.g. 6.7';
+        input.step = '0.1';
+        input.max = '16.7';
+        if (!isNaN(oldVal) && oldVal > 0 && glucoseUnit === 'mgdl') {
+            input.value = (oldVal / 18.0182).toFixed(1);
+        }
+    } else {
+        btns[0].classList.add('active');
+        hint.textContent = 'Fasting blood glucose (mg/dL)';
+        input.placeholder = 'e.g. 120';
+        input.step = '1';
+        input.max = '300';
+        if (!isNaN(oldVal) && oldVal > 0 && glucoseUnit === 'mmol') {
+            input.value = Math.round(oldVal * 18.0182);
+        }
+    }
+    glucoseUnit = unit;
 }
 
-// Traverse a single decision tree
+// ─── BMI Calculator ───
+function openBmiCalc() { document.getElementById('bmi-popup').classList.add('show'); }
+function closeBmiCalc() { document.getElementById('bmi-popup').classList.remove('show'); }
+
+function setHeightUnit(unit) {
+    heightUnit = unit;
+    const btns = document.querySelectorAll('#height-unit-toggle button');
+    btns.forEach(b => b.classList.remove('active'));
+    if (unit === 'cm') {
+        btns[0].classList.add('active');
+        document.getElementById('height-input-cm').style.display = '';
+        document.getElementById('height-input-ft').style.display = 'none';
+    } else {
+        btns[1].classList.add('active');
+        document.getElementById('height-input-cm').style.display = 'none';
+        document.getElementById('height-input-ft').style.display = '';
+    }
+}
+
+function setWeightUnit(unit) {
+    weightUnit = unit;
+    const btns = document.querySelectorAll('#weight-unit-toggle button');
+    btns.forEach(b => b.classList.remove('active'));
+    document.getElementById('weight-input-kg').style.display = 'none';
+    document.getElementById('weight-input-st').style.display = 'none';
+    document.getElementById('weight-input-lb').style.display = 'none';
+    if (unit === 'kg') { btns[0].classList.add('active'); document.getElementById('weight-input-kg').style.display = ''; }
+    else if (unit === 'st') { btns[1].classList.add('active'); document.getElementById('weight-input-st').style.display = ''; }
+    else { btns[2].classList.add('active'); document.getElementById('weight-input-lb').style.display = ''; }
+}
+
+function calculateBmi() {
+    let heightM, weightKg;
+
+    if (heightUnit === 'cm') {
+        const cm = parseFloat(document.getElementById('height-cm').value);
+        if (!cm || cm < 100) { alert('Please enter your height in cm.'); return; }
+        heightM = cm / 100;
+    } else {
+        const ft = parseFloat(document.getElementById('height-ft').value) || 0;
+        const inches = parseFloat(document.getElementById('height-in').value) || 0;
+        const totalIn = ft * 12 + inches;
+        if (totalIn < 36) { alert('Please enter your height in feet and inches.'); return; }
+        heightM = totalIn * 0.0254;
+    }
+
+    if (weightUnit === 'kg') {
+        weightKg = parseFloat(document.getElementById('weight-kg').value);
+        if (!weightKg || weightKg < 30) { alert('Please enter your weight in kg.'); return; }
+    } else if (weightUnit === 'st') {
+        const st = parseFloat(document.getElementById('weight-st').value) || 0;
+        const lb = parseFloat(document.getElementById('weight-lb-st').value) || 0;
+        weightKg = (st * 14 + lb) * 0.453592;
+        if (weightKg < 30) { alert('Please enter your weight in stone and pounds.'); return; }
+    } else {
+        const lb = parseFloat(document.getElementById('weight-lb').value);
+        if (!lb || lb < 60) { alert('Please enter your weight in pounds.'); return; }
+        weightKg = lb * 0.453592;
+    }
+
+    const bmi = weightKg / (heightM * heightM);
+    const rounded = Math.round(bmi * 10) / 10;
+
+    let category, catColor;
+    if (bmi < 18.5) { category = 'Underweight'; catColor = '#d97706'; }
+    else if (bmi < 25) { category = 'Healthy weight'; catColor = '#059669'; }
+    else if (bmi < 30) { category = 'Overweight'; catColor = '#d97706'; }
+    else { category = 'Obese'; catColor = '#dc2626'; }
+
+    document.getElementById('bmi-calc-value').textContent = rounded;
+    document.getElementById('bmi-category').textContent = category;
+    document.getElementById('bmi-category').style.color = catColor;
+    document.getElementById('bmi-result').style.display = 'block';
+
+    // Auto-fill the BMI field
+    document.getElementById('bmi').value = rounded;
+    closeBmiCalc();
+}
+
+// ─── GBT Prediction ───
+function sigmoid(x) { return 1 / (1 + Math.exp(-x)); }
+
 function evalTree(node, features) {
-    if ('v' in node) return node.v; // leaf
-    return features[node.f] <= node.t
-        ? evalTree(node.l, features)
-        : evalTree(node.r, features);
+    if ('v' in node) return node.v;
+    return features[node.f] <= node.t ? evalTree(node.l, features) : evalTree(node.r, features);
 }
 
-// Compute engineered features (must match Python exactly)
 function engineerFeatures(raw) {
     const [preg, gluc, bp, skin, ins, bmi, dpf, age] = raw;
-    return [
-        ...raw,
-        gluc * bmi / 100,              // Glucose_BMI
-        age * preg,                     // Age_Pregnancies
-        ins / (gluc + 1),              // Insulin_Glucose_Ratio
-        bmi * age / 100,               // BMI_Age
-        gluc * dpf,                    // Glucose_DPF
-        gluc > 140 ? 1 : 0,           // High_Glucose
-        bmi >= 30 ? 1 : 0,            // Obese
-        bp > 90 ? 1 : 0               // High_BP
-    ];
+    return [...raw, gluc*bmi/100, age*preg, ins/(gluc+1), bmi*age/100, gluc*dpf,
+            gluc>140?1:0, bmi>=30?1:0, bp>90?1:0];
 }
 
 function predict() {
@@ -437,29 +571,24 @@ function predict() {
     const rawValues = [];
     let valid = true;
 
-    const required = ['glucose', 'bmi', 'age'];
-    for (const id of required) {
+    for (const id of ['glucose', 'bmi', 'age']) {
         const el = document.getElementById(id);
         const val = parseFloat(el.value);
-        if (isNaN(val) || val <= 0) {
-            el.classList.add('error');
-            valid = false;
-        } else {
-            el.classList.remove('error');
-        }
+        if (isNaN(val) || val <= 0) { el.classList.add('error'); valid = false; }
+        else { el.classList.remove('error'); }
     }
-
-    if (!valid) {
-        alert('Please fill in at least your Glucose, BMI, and Age.');
-        return;
-    }
+    if (!valid) { alert('Please fill in at least your Glucose, BMI, and Age.'); return; }
 
     for (const id of FIELDS) {
-        const val = parseFloat(document.getElementById(id).value) || 0;
+        let val = parseFloat(document.getElementById(id).value) || 0;
+        // Convert mmol/L to mg/dL if needed
+        if (id === 'glucose' && glucoseUnit === 'mmol' && val > 0) {
+            val = Math.round(val * 18.0182);
+        }
         rawValues.push(val);
     }
 
-    // Impute zeros with medians (for columns where 0 = missing)
+    // Impute zeros
     const values = [...rawValues];
     for (const col of MODEL.zero_is_missing) {
         if (values[col] === 0 && MODEL.medians[String(col)]) {
@@ -467,10 +596,8 @@ function predict() {
         }
     }
 
-    // Engineer features
     const features = engineerFeatures(values);
 
-    // GBT prediction: init_value + learning_rate * sum(tree predictions)
     let rawScore = MODEL.init_value;
     for (const tree of MODEL.trees) {
         rawScore += MODEL.learning_rate * evalTree(tree, features);
@@ -495,7 +622,7 @@ function predict() {
     document.getElementById('risk-desc').textContent = desc;
     document.getElementById('risk-bar').style.width = `${pct}%`;
 
-    // Factor breakdown (show original input values, not imputed)
+    // Factor breakdown
     const breakdownEl = document.getElementById('breakdown');
     let html = '<h3>Factor Breakdown</h3>';
     for (let i = 0; i < FIELDS.length; i++) {
@@ -503,7 +630,6 @@ function predict() {
         const imputed = values[i];
         const range = RANGES[FIELDS[i]];
         let tag, tagClass;
-
         if (val === 0 && MODEL.zero_is_missing.includes(i)) {
             tag = `Unknown (est. ${imputed})`; tagClass = 'normal';
         } else if (imputed >= range[0] && imputed <= range[1]) {
@@ -513,25 +639,88 @@ function predict() {
         } else {
             tag = 'Low'; tagClass = 'normal';
         }
-        const displayVal = val === 0 && MODEL.zero_is_missing.includes(i) ? `${val} → ${imputed}` : val;
+        const displayVal = val === 0 && MODEL.zero_is_missing.includes(i) ? `${val} \u2192 ${imputed}` : val;
         html += `<div class="factor"><span>${LABELS[i]}: <strong>${displayVal}</strong></span><span class="factor-tag ${tagClass}">${tag}</span></div>`;
     }
     breakdownEl.innerHTML = html;
 
+    // Save to history
+    saveToHistory(pct, level, label, rawValues);
+
     resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-function acceptCookies() {
-    localStorage.setItem('cookie_consent', 'accepted');
-    document.getElementById('cookie-banner').classList.remove('show');
+// ─── Results History (localStorage) ───
+function getHistory() {
+    try { return JSON.parse(localStorage.getItem('dp_history') || '[]'); }
+    catch { return []; }
 }
-function rejectCookies() {
-    localStorage.setItem('cookie_consent', 'rejected');
-    document.getElementById('cookie-banner').classList.remove('show');
+
+function saveToHistory(pct, level, label, values) {
+    const history = getHistory();
+    history.unshift({
+        date: new Date().toISOString(),
+        pct, level, label,
+        glucose: values[1],
+        bmi: values[5],
+        age: values[7]
+    });
+    // Keep max 20 entries
+    if (history.length > 20) history.length = 20;
+    localStorage.setItem('dp_history', JSON.stringify(history));
+    renderHistory();
 }
-if (!localStorage.getItem('cookie_consent')) {
-    document.getElementById('cookie-banner').classList.add('show');
+
+function clearHistory() {
+    if (confirm('Clear all assessment history? This cannot be undone.')) {
+        localStorage.removeItem('dp_history');
+        renderHistory();
+    }
 }
+
+function renderHistory() {
+    const container = document.getElementById('history-content');
+    const history = getHistory();
+
+    if (history.length === 0) {
+        container.innerHTML = '<div class="history-empty">No assessments yet. Complete the form above to get started.</div>';
+        return;
+    }
+
+    let html = '<ul class="history-list">';
+    for (const entry of history) {
+        const d = new Date(entry.date);
+        const dateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        const timeStr = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+        html += `<li class="history-item">
+            <div>
+                <div>${entry.label}</div>
+                <div class="history-meta">${dateStr} at ${timeStr} — Glucose: ${entry.glucose}, BMI: ${entry.bmi}, Age: ${entry.age}</div>
+            </div>
+            <div class="history-score ${entry.level}">${entry.pct}%</div>
+        </li>`;
+    }
+    html += '</ul>';
+    html += `<div class="history-actions">
+        <span class="history-count">${history.length} assessment${history.length === 1 ? '' : 's'}</span>
+        <button onclick="clearHistory()">Clear History</button>
+    </div>`;
+
+    container.innerHTML = html;
+}
+
+// ─── Cookie Consent ───
+function acceptCookies() { localStorage.setItem('cookie_consent', 'accepted'); document.getElementById('cookie-banner').classList.remove('show'); }
+function rejectCookies() { localStorage.setItem('cookie_consent', 'rejected'); document.getElementById('cookie-banner').classList.remove('show'); }
+
+// ─── Init ───
+if (!localStorage.getItem('cookie_consent')) { document.getElementById('cookie-banner').classList.add('show'); }
+renderHistory();
+
+// Close BMI popup on overlay click
+document.getElementById('bmi-popup').addEventListener('click', function(e) {
+    if (e.target === this) closeBmiCalc();
+});
 </script>
 </body>
 </html>
