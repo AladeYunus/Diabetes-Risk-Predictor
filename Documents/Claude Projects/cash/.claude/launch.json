@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "pantry-chef-ai",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "pantry-chef-ai"],
+      "port": 3001,
+      "autoPort": true
+    },
+    {
+      "name": "heatpumpmatch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "heatpumpmatch-uk"],
+      "port": 3000,
+      "autoPort": true
+    }
+  ]
+}
